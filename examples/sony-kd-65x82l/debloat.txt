@@ -18,6 +18,17 @@
 # Reboot-checked (tools/check.py: nothing drifted, Home on the launcher; power-on lands on Home); Home, gear,
 # app buttons, Input, the mic button and volume hold-to-repeat checked on the real remote. Not lived with for
 # days yet.
+# Also Sony BRAVIA XR-65X90L (2023, BRAVIA_VH22, MediaTek MT5835), Australia, the same BRAVIA_VH22_M_PA build:
+# every package below exists on it. Applied on 2026-10-29: batch 1, and of batch 2 only YouTube Music, Play
+# Games, helpguidecontents, smarthelp and livingfit (seeds.*, ecodashboard and the BRAVIA CAM packages left
+# enabled), plus the commented-out Australian-unit section at the end. Wi-Fi; setupwraith owned the network,
+# which was forgotten and re-joined in Settings, then batch 3 ran without FORCE_SETUPWRAITH and the TV stayed
+# on Wi-Fi. disable.sh skipped com.qterics.da.product, android.autoinstalls.config.sony.bravia and
+# com.sony.dtv.homekit (no permission block in dumpsys); none serves TvInputService, so they were disabled
+# with TVINPUT_ALLOW=1 once HDMI and a PS5 worked after a reboot. Launcher on the first try with NO key
+# helper: with launcherx off, Home, Input, gear, the mic button and the app buttons all worked on the real
+# remote and held volume ramped. Reboot-checked: everything stayed disabled, power-on lands on Home.
+# Not lived with for days yet.
 #
 # Apply:   TV_HOST=<tv ip> tools/disable.sh examples/sony-kd-65x82l/debloat.txt
 # Undo:    TV_HOST=<tv ip> tools/restore.sh examples/sony-kd-65x82l/debloat.txt com.google.android.apps.tv.launcherx
@@ -82,3 +93,25 @@ com.sony.dtv.sensingcamera.fwupdate
 # is deleted when it is disabled. Here it owned only an unused 2.4 GHz entry, the TV is on 5 GHz
 # (re-joined in Settings), so it ran with FORCE_SETUPWRAITH=1.
 com.google.android.tungsten.setupwraith
+
+# Australian XR-65X90L unit (BRAVIA_VH22_M_PA), 2026-10-29: also disabled there, by the owner's choice or
+# from the sony-bravia-4k-vh21 list. One day only so far; uncomment to try them.
+# com.sony.dtv.lastaccess                     # usage agent
+# com.sony.dtv.sonybugreportsys               # bug-report uploader
+# android.autoinstalls.config.sony.bravia     # partner apps pushed in after setup; needs TVINPUT_ALLOW=1
+# com.sony.dtv.airplayapp                     # AirPlay
+# com.sony.dtv.homekit                        # HomeKit; needs TVINPUT_ALLOW=1
+# com.sony.dtv.customersupport                # Help tile
+# com.sony.dtv.osat.music                     # music player; re-enable to play music from USB
+# com.sonypicturescore                        # BRAVIA CORE (Sony Pictures)
+# com.google.android.videos                   # Google TV movies store (loses access to purchases in it)
+# com.google.android.youtube.tvkids
+# com.apple.atve.sony.appletv                 # Apple TV app
+# au.com.ninenow.ctv                          # 9Now
+# com.swm.live                                # 7plus
+# au.com.tenplay                              # 10 Play
+# au.com.streamotion.ares.tv                  # Kayo / Binge
+# au.com.optus.sport.androidtv                # Optus Sport
+# com.cbs.ca                                  # Paramount+
+# com.curiosity.curiositystream.androidtv     # CuriosityStream
+# com.plexapp.android                         # Plex
